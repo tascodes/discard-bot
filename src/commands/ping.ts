@@ -1,5 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { Command, CommandName } from "../models/command";
+import fetch from "node-fetch";
 
 const pingCommand: Command = {
   data: new SlashCommandBuilder()
@@ -11,7 +12,10 @@ const pingCommand: Command = {
       return;
     }
 
-    await interaction.reply("Pong!");
+    const res = await fetch("http://localhost:3000/api/v1/ping");
+    const body = await res.text();
+
+    await interaction.reply(body);
   },
 };
 

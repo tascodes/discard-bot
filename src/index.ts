@@ -27,6 +27,10 @@ commands.forEach((command) => {
 });
 
 client.on("interactionCreate", async (interaction) => {
+  if (interaction.isModalSubmit()) {
+    console.log("Modal Submit:", interaction);
+  }
+
   if (
     !interaction.isApplicationCommand() &&
     !interaction.isCommand() &&
